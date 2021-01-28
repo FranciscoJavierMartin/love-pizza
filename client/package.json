@@ -7,7 +7,10 @@
     "serve": "vite preview"
   },
   "dependencies": {
+    "chart.js": "^2.9.4",
+    "d3-scale": "^3.2.3",
     "vue": "^3.0.5",
+    "vue-chartjs": "^3.5.1",
     "vue-router": "4.0.3"
   },
   "devDependencies": {

@@ -9,15 +9,16 @@
 </template>
 
 <script lang="ts">
+import { defineComponent } from 'vue';
 import {
   HOME_PAGE_ROUTE,
   REGISTER_PAGE_ROUTE,
   LOGIN_PAGE_ROUTE,
 } from '../constants/routes';
 
-export default {
+export default defineComponent({
   setup() {
     return { HOME_PAGE_ROUTE, REGISTER_PAGE_ROUTE, LOGIN_PAGE_ROUTE };
   },
-};
+});
 </script>
