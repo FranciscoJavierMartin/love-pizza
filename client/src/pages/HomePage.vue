@@ -23,11 +23,16 @@ export default defineComponent({
   setup() {
     return {
       data: [
-        ['Bob', 1],
-        ['Robin', 3],
-        ['Mark', 2],
-        ['Joe', 3],
+        ['Alice', 1],
+        ['Bob', 3],
+        ['Carol', 2],
+        ['David', 3],
         ['Eve', 4],
+        ['Frank', 5],
+        ['Geraldine', 3],
+        ['Hector', 4],
+        ['Irene', 2],
+        ['Jack', 1],
       ],
     };
   },
