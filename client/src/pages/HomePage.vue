@@ -9,6 +9,10 @@
       :tick-count="5"
       :bar-padding="0.5"
     />
+    <div>
+      <h2>Do you like pizza?</h2>
+      <button @click="likePizza">Click here</button>
+    </div>
   </div>
 </template>
 
@@ -21,19 +25,26 @@ export default defineComponent({
     BarChart,
   },
   setup() {
+    const data = [
+      ['Alice', 1],
+      ['Bob', 3],
+      ['Carol', 2],
+      ['David', 3],
+      ['Eve', 4],
+      ['Frank', 5],
+      ['Geraldine', 3],
+      ['Hector', 4],
+      ['Irene', 2],
+      ['Jack', 1],
+    ];
+
+    const likePizza = () => {
+      console.log('like pizza');
+    };
+
     return {
-      data: [
-        ['Alice', 1],
-        ['Bob', 3],
-        ['Carol', 2],
-        ['David', 3],
-        ['Eve', 4],
-        ['Frank', 5],
-        ['Geraldine', 3],
-        ['Hector', 4],
-        ['Irene', 2],
-        ['Jack', 1],
-      ],
+      data,
+      likePizza,
     };
   },
 });
