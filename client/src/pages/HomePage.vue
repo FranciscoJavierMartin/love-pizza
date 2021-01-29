@@ -16,8 +16,9 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { defineComponent } from 'vue';
+import { IUser } from '../models/user';
 import BarChart from '../components/BarChart.vue';
 
 export default defineComponent({
@@ -25,17 +26,17 @@ export default defineComponent({
     BarChart,
   },
   setup() {
-    const data = [
-      ['Alice', 1],
-      ['Bob', 3],
-      ['Carol', 2],
-      ['David', 3],
-      ['Eve', 4],
-      ['Frank', 5],
-      ['Geraldine', 3],
-      ['Hector', 4],
-      ['Irene', 2],
-      ['Jack', 1],
+    const data: IUser[] = [
+      { name: 'Alice', likes: 1 },
+      { name: 'Bob', likes: 3 },
+      { name: 'Carol', likes: 2 },
+      { name: 'David', likes: 3 },
+      { name: 'Eve', likes: 4 },
+      { name: 'Frank', likes: 5 },
+      { name: 'Geraldine', likes: 3 },
+      { name: 'Hector', likes: 4 },
+      { name: 'Irene', likes: 2 },
+      { name: 'Jack', likes: 1 },
     ];
 
     const likePizza = () => {

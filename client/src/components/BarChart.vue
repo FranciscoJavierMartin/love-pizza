@@ -1,8 +1,21 @@
 <template>
-  <svg class="barchart" :width="width + marginLeft / 2" :height="height + marginTop">
+  <svg
+    class="barchart"
+    :width="width + marginLeft / 2"
+    :height="height + marginTop"
+  >
     <g :transform="`translate(${marginLeft / 2}, ${marginTop / 2})`">
-      <g class="x-axis" fill="none" :transform="`translate(0, ${height})`" style="color: #888">
-        <path class="domain" stroke="currentColor" :d="`M0.5,6V0.5H${width}.5V6`"></path>
+      <g
+        class="x-axis"
+        fill="none"
+        :transform="`translate(0, ${height})`"
+        style="color: #888"
+      >
+        <path
+          class="domain"
+          stroke="currentColor"
+          :d="`M0.5,6V0.5H${width}.5V6`"
+        ></path>
         <g
           class="tick"
           opacity="1"
@@ -17,8 +30,17 @@
           <text fill="currentColor" y="9" dy="0.71em">{{ bar.xLabel }}</text>
         </g>
       </g>
-      <g class="y-axis" fill="none" :transform="`translate(0, 0)`" style="color: #888">
-        <path class="domain" stroke="currentColor" :d="`M0.5,${height}.5H0.5V0.5H-6`"></path>
+      <g
+        class="y-axis"
+        fill="none"
+        :transform="`translate(0, 0)`"
+        style="color: #888"
+      >
+        <path
+          class="domain"
+          stroke="currentColor"
+          :d="`M0.5,${height}.5H0.5V0.5H-6`"
+        ></path>
         <g
           class="tick"
           opacity="1"
@@ -49,10 +71,10 @@
 </template>
 
 <script>
-import { scaleLinear, scaleBand } from "d3-scale";
+import { scaleLinear, scaleBand } from 'd3-scale';
 
 export default {
-  name: "BarChart",
+  name: 'BarChart',
   props: {
     height: { default: 200 },
     width: { default: 500 },
@@ -62,7 +84,7 @@ export default {
     marginBottom: { default: 40 },
     marginRight: { default: 40 },
     tickCount: { default: 5 },
-    barPadding: { default: 0.3 }
+    barPadding: { default: 0.3 },
   },
 
   computed: {
@@ -73,28 +95,28 @@ export default {
       return scaleBand()
         .range([0, this.width])
         .padding(this.barPadding)
-        .domain(this.dataSet.map(e => e[0]));
+        .domain(this.dataSet.map((e) => e.name));
     },
     y() {
-      let values = this.dataSet.map(e => e[1]);
+      let values = this.dataSet.map((e) => e.likes);
       return scaleLinear()
         .range([this.height, 0])
         .domain([0, Math.max(...values)]);
     },
     bars() {
-      let bars = this.dataSet.map(d => {
+      let bars = this.dataSet.map((d) => {
         return {
-          xLabel: d[0],
-          x: this.x(d[0]),
-          y: this.y(d[1]),
+          xLabel: d.name,
+          x: this.x(d.name),
+          y: this.y(d.likes),
           width: this.x.bandwidth(),
-          height: this.height - this.y(d[1])
+          height: this.height - this.y(d.likes),
         };
       });
 
       return bars;
-    }
-  }
+    },
+  },
 };
 </script>
 
