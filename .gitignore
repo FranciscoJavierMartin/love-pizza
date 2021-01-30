@@ -4,4 +4,8 @@ dist
 dist-ssr
 *.local
 obj
+bin
 .vscode
+API/lovepizza.db-shm
+API/lovepizza.db-wal
+lovepizza.db
