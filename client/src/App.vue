@@ -9,19 +9,17 @@
 import { defineComponent } from 'vue';
 import NavBar from './components/NavBar.vue';
 import axios from 'axios';
+import agent from './api/agent';
 
 export default {
   components: {
     NavBar,
   },
   mounted() {
-    console.log('Hello');
-
-    axios
-      .post('http://localhost:5000/api/Users/login', {
-        username: 'test',
-        password: 'test',
-      })
+    agent.User.register({
+      username: 'test',
+      password: 'test',
+    })
       .then((a) => {
         console.log('Then', a);
       })

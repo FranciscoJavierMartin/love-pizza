@@ -26,6 +26,7 @@ namespace API.Controllers
     }
 
     [HttpPost("register")]
+    [AllowAnonymous]
     public async Task<ActionResult<UserDto>> Register(RegisterDto registerDto)
     {
       ActionResult<UserDto> res;
@@ -57,6 +58,7 @@ namespace API.Controllers
     }
 
     [HttpPost("login")]
+    [AllowAnonymous]
     public async Task<ActionResult<UserDto>> Login(LoginDto loginDto)
     {
       ActionResult<UserDto> res;

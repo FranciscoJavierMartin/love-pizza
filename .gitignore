@@ -9,3 +9,4 @@ bin
 API/lovepizza.db-shm
 API/lovepizza.db-wal
 lovepizza.db
+client/.env
