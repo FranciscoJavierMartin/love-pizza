@@ -21,33 +21,22 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent, ref } from 'vue';
-import { useStore } from '../store';
-import { AllActionTypes } from '../store/action-types';
-
-export default defineComponent({
-  setup() {
-    const username = ref<string>('');
-    const password = ref<string>('');
-    const confirmPassword = ref<string>('');
-    const store = useStore();
-
-    const registerUser = () => {
-      if (password.value === confirmPassword.value) {
-        store.dispatch(AllActionTypes.REGISTER_USER, {
-          username: username.value,
-          password: password.value,
-        });
-      }
-    };
-
+<script>
+export default {
+  data() {
     return {
-      username,
-      password,
-      confirmPassword,
-      registerUser,
+      username: "",
+      password: "",
+      confirmPassword: "",
     };
   },
-});
+  methods: {
+    registerUser() {
+      this.$store.dispatch("auth/registerUser", {
+        username: this.username,
+        password: this.password,
+      });
+    },
+  },
+};
 </script>

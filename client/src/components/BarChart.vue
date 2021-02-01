@@ -95,7 +95,7 @@ export default {
       return scaleBand()
         .range([0, this.width])
         .padding(this.barPadding)
-        .domain(this.dataSet.map((e) => e.name));
+        .domain(this.dataSet.map((e) => e.username));
     },
     y() {
       let values = this.dataSet.map((e) => e.likes);
@@ -106,8 +106,8 @@ export default {
     bars() {
       let bars = this.dataSet.map((d) => {
         return {
-          xLabel: d.name,
-          x: this.x(d.name),
+          xLabel: d.username,
+          x: this.x(d.username),
           y: this.y(d.likes),
           width: this.x.bandwidth(),
           height: this.height - this.y(d.likes),

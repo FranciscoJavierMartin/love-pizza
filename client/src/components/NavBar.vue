@@ -12,33 +12,32 @@
   </nav>
 </template>
 
-<script lang="ts">
-import { computed, defineComponent } from 'vue';
+<script>
 import {
   HOME_PAGE_ROUTE,
-  REGISTER_PAGE_ROUTE,
   LOGIN_PAGE_ROUTE,
-} from '../constants/routes';
-import { useStore } from '../store';
-import { AllActionTypes } from '../store/action-types';
+  REGISTER_PAGE_ROUTE,
+} from "../constants/routes";
 
-export default defineComponent({
-  setup() {
-    const store = useStore();
-
-    const authUser = computed(() => store.getters.currentUser);
-
-    const signout = () => {
-      store.dispatch(AllActionTypes.SET_CURRENT_USER, null);
-    };
-
-    return {
-      authUser,
-      signout,
-      HOME_PAGE_ROUTE,
-      REGISTER_PAGE_ROUTE,
-      LOGIN_PAGE_ROUTE,
-    };
+export default {
+  computed: {
+    authUser() {
+      return this.$store.getters["auth/currentUser"];
+    },
+    HOME_PAGE_ROUTE() {
+      return HOME_PAGE_ROUTE;
+    },
+    LOGIN_PAGE_ROUTE() {
+      return LOGIN_PAGE_ROUTE;
+    },
+    REGISTER_PAGE_ROUTE() {
+      return REGISTER_PAGE_ROUTE;
+    },
   },
-});
+  methods: {
+    signout() {
+      this.$store.dispatch("auth/setCurrentUser", null);
+    },
+  },
+};
 </script>
