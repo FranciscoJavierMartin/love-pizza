@@ -55,7 +55,7 @@ export interface AuthActionsTypes {
   ): void;
   [AuthATypes.SET_CURRENT_USER](
     { commit }: AugmentedActionContextAuth,
-    payload: IAuthUser,
+    payload: IAuthUser | null,
   ): void;
 }
 

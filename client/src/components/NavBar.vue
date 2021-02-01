@@ -3,6 +3,7 @@
     <router-link :to="HOME_PAGE_ROUTE">Love Pizza</router-link>
     <div v-if="authUser">
       <strong>{{ authUser.username }}</strong>
+      <button @click="signout">Sign Out</button>
     </div>
     <div v-else>
       <router-link :to="LOGIN_PAGE_ROUTE">Login</router-link>
@@ -19,6 +20,7 @@ import {
   LOGIN_PAGE_ROUTE,
 } from '../constants/routes';
 import { useStore } from '../store';
+import { AllActionTypes } from '../store/action-types';
 
 export default defineComponent({
   setup() {
@@ -26,7 +28,17 @@ export default defineComponent({
 
     const authUser = computed(() => store.getters.currentUser);
 
-    return { authUser, HOME_PAGE_ROUTE, REGISTER_PAGE_ROUTE, LOGIN_PAGE_ROUTE };
+    const signout = () => {
+      store.dispatch(AllActionTypes.SET_CURRENT_USER, null);
+    };
+
+    return {
+      authUser,
+      signout,
+      HOME_PAGE_ROUTE,
+      REGISTER_PAGE_ROUTE,
+      LOGIN_PAGE_ROUTE,
+    };
   },
 });
 </script>
