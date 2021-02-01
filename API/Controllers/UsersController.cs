@@ -8,6 +8,7 @@ using API.Data;
 using API.DTO;
 using API.Entities;
 using API.Interfaces;
+using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -19,8 +20,10 @@ namespace API.Controllers
   {
     private readonly DataContext _context;
     private readonly ITokenService _tokenService;
-    public UsersController(DataContext context, ITokenService tokenService)
+    private readonly IMapper _mapper;
+    public UsersController(DataContext context, ITokenService tokenService, IMapper mapper)
     {
+      _mapper = mapper;
       _tokenService = tokenService;
       _context = context;
     }
@@ -119,8 +122,9 @@ namespace API.Controllers
     [AllowAnonymous]
     public async Task<IEnumerable<UserDto>> GetTopUsers()
     {
-      return await _context.Users.Where(user => user.Likes > 0)
+      var users = await _context.Users.Where(user => user.Likes > 0)
         .OrderByDescending(user => user.Likes).Take(10).ToListAsync();
+      return _mapper.Map<IEnumerable<UserDto>>(users);
     }
 
     private async Task<bool> UserExists(string username)
