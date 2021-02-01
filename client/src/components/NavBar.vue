@@ -1,7 +1,10 @@
 <template>
   <nav>
     <router-link :to="HOME_PAGE_ROUTE">Love Pizza</router-link>
-    <div>
+    <div v-if="authUser">
+      <strong>{{ authUser.username }}</strong>
+    </div>
+    <div v-else>
       <router-link :to="LOGIN_PAGE_ROUTE">Login</router-link>
       <router-link :to="REGISTER_PAGE_ROUTE">Register</router-link>
     </div>
@@ -9,16 +12,21 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { computed, defineComponent } from 'vue';
 import {
   HOME_PAGE_ROUTE,
   REGISTER_PAGE_ROUTE,
   LOGIN_PAGE_ROUTE,
 } from '../constants/routes';
+import { useStore } from '../store';
 
 export default defineComponent({
   setup() {
-    return { HOME_PAGE_ROUTE, REGISTER_PAGE_ROUTE, LOGIN_PAGE_ROUTE };
+    const store = useStore();
+
+    const authUser = computed(() => store.getters.currentUser);
+
+    return { authUser, HOME_PAGE_ROUTE, REGISTER_PAGE_ROUTE, LOGIN_PAGE_ROUTE };
   },
 });
 </script>

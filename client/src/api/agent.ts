@@ -5,7 +5,7 @@ import {
   REGISTER_SERVER_ROUTE,
 } from '../constants/serverRoutes';
 import { IUserFormLogin, IUserFormRegister } from '../interfaces/forms';
-import { IUser } from '../models/user';
+import { IAuthUser } from '../models/user';
 
 axios.defaults.baseURL = `${import.meta.env.VITE_API_URL}`;
 
@@ -57,9 +57,9 @@ const request = {
 };
 
 const User = {
-  login: (user: IUserFormLogin): Promise<IUser> =>
+  login: (user: IUserFormLogin): Promise<IAuthUser> =>
     request.post(LOGIN_SERVER_ROUTE, user),
-  register: (user: IUserFormRegister): Promise<IUser> =>
+  register: (user: IUserFormRegister): Promise<IAuthUser> =>
     request.post(REGISTER_SERVER_ROUTE, user),
 };
 

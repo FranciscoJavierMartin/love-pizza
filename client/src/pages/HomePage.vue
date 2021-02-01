@@ -18,6 +18,10 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+import { useStore } from '../store';
+import { AllMutationTypes } from '../store/mutation-types';
+import { AllActionTypes } from '../store/action-types';
+
 import { IUser } from '../models/user';
 import BarChart from '../components/BarChart.vue';
 
@@ -38,9 +42,10 @@ export default defineComponent({
       { name: 'Irene', likes: 2 },
       { name: 'Jack', likes: 1 },
     ];
+    const store = useStore();
 
     const likePizza = () => {
-      console.log('like pizza');
+      console.log('Like Pizza');
     };
 
     return {

@@ -5,27 +5,13 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { defineComponent } from 'vue';
 import NavBar from './components/NavBar.vue';
-import axios from 'axios';
-import agent from './api/agent';
 
-export default {
+export default defineComponent({
   components: {
     NavBar,
   },
-  mounted() {
-    agent.User.register({
-      username: 'test',
-      password: 'test',
-    })
-      .then((a) => {
-        console.log('Then', a);
-      })
-      .catch((a) => {
-        console.log('Error', a);
-      });
-  },
-};
+});
 </script>

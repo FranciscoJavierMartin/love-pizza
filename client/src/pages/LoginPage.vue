@@ -16,14 +16,21 @@
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
+import { useStore } from '../store';
+import { AllActionTypes } from '../store/action-types';
 
 export default defineComponent({
   setup() {
     const username = ref<string>('');
     const password = ref<string>('');
+    const store = useStore();
 
     const loginUser = () => {
       console.log('Username', username.value, 'Password', password.value);
+      store.dispatch(AllActionTypes.LOGIN_USER, {
+        username: username.value,
+        password: password.value,
+      });
     };
 
     return {
