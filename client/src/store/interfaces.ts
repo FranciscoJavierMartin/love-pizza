@@ -53,6 +53,10 @@ export interface AuthActionsTypes {
     { commit }: AugmentedActionContextAuth,
     payload: IUserFormRegister,
   ): void;
+  [AuthATypes.SET_CURRENT_USER](
+    { commit }: AugmentedActionContextAuth,
+    payload: IAuthUser,
+  ): void;
 }
 
 export interface StoreActions extends AuthActionsTypes {}

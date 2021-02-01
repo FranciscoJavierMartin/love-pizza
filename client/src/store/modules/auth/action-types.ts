@@ -1,4 +1,5 @@
 export enum ActionTypes {
   LOGIN_USER = 'LOGIN_USER',
   REGISTER_USER = 'REGISTER_USER',
+  SET_CURRENT_USER = 'SET_CURRENT_USER',
 }

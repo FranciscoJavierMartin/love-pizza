@@ -8,7 +8,11 @@
         <input placeholder="Password" type="password" v-model="password" />
       </div>
       <div>
-        <input placeholder="Confirm Password" type="password" v-model="confirmPassword" />
+        <input
+          placeholder="Confirm Password"
+          type="password"
+          v-model="confirmPassword"
+        />
       </div>
       <div>
         <button type="submit" @click.prevent="registerUser">Register</button>
@@ -19,15 +23,23 @@
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
+import { useStore } from '../store';
+import { AllActionTypes } from '../store/action-types';
 
 export default defineComponent({
   setup() {
     const username = ref<string>('');
     const password = ref<string>('');
     const confirmPassword = ref<string>('');
+    const store = useStore();
 
     const registerUser = () => {
-      console.log('Username', username.value, 'Password', password.value);
+      if (password.value === confirmPassword.value) {
+        store.dispatch(AllActionTypes.REGISTER_USER, {
+          username: username.value,
+          password: password.value,
+        });
+      }
     };
 
     return {

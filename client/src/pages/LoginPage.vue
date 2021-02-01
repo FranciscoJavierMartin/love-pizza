@@ -26,7 +26,6 @@ export default defineComponent({
     const store = useStore();
 
     const loginUser = () => {
-      console.log('Username', username.value, 'Password', password.value);
       store.dispatch(AllActionTypes.LOGIN_USER, {
         username: username.value,
         password: password.value,
