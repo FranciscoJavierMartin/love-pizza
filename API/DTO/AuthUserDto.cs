@@ -1,8 +1,8 @@
 namespace API.DTO
 {
-    public class UserDto
+    public class AuthUserDto
     {
         public string Username { get; set; }
-        public string Likes { get; set; }
+        public string Token { get; set; }
     }
 }

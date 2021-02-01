@@ -27,9 +27,9 @@ namespace API.Controllers
 
     [HttpPost("register")]
     [AllowAnonymous]
-    public async Task<ActionResult<UserDto>> Register(RegisterDto registerDto)
+    public async Task<ActionResult<AuthUserDto>> Register(RegisterDto registerDto)
     {
-      ActionResult<UserDto> res;
+      ActionResult<AuthUserDto> res;
       if (await UserExists(registerDto.Username))
       {
         res = BadRequest("Username is taken");
@@ -48,7 +48,7 @@ namespace API.Controllers
 
         _context.Users.Add(user);
         await _context.SaveChangesAsync();
-        res = new UserDto
+        res = new AuthUserDto
         {
           Username = user.UserName,
           Token = _tokenService.CreateToken(user)
@@ -59,9 +59,9 @@ namespace API.Controllers
 
     [HttpPost("login")]
     [AllowAnonymous]
-    public async Task<ActionResult<UserDto>> Login(LoginDto loginDto)
+    public async Task<ActionResult<AuthUserDto>> Login(LoginDto loginDto)
     {
-      ActionResult<UserDto> res;
+      ActionResult<AuthUserDto> res;
 
       var user = await _context.Users
         .SingleOrDefaultAsync(x => x.UserName == loginDto.Username);
@@ -83,7 +83,7 @@ namespace API.Controllers
           }
         }
 
-        res = new UserDto
+        res = new AuthUserDto
         {
           Username = user.UserName,
           Token = _tokenService.CreateToken(user)
@@ -91,6 +91,36 @@ namespace API.Controllers
       }
 
       return res;
+    }
+
+    [HttpPut("vote/{username}")]
+    [Authorize]
+    public async Task<ActionResult> Vote(string username)
+    {
+      ActionResult res;
+      var user = await _context.Users.SingleOrDefaultAsync(x => x.UserName == username);
+
+      if (user == null)
+      {
+        res = BadRequest();
+      }
+      else
+      {
+        user.Likes++;
+        _context.Users.Update(user);
+        await _context.SaveChangesAsync();
+        res = Ok();
+      }
+
+      return res;
+    }
+
+    [HttpGet]
+    [AllowAnonymous]
+    public async Task<IEnumerable<UserDto>> GetTopUsers()
+    {
+      return await _context.Users.Where(user => user.Likes > 0)
+        .OrderByDescending(user => user.Likes).Take(10).ToListAsync();
     }
 
     private async Task<bool> UserExists(string username)

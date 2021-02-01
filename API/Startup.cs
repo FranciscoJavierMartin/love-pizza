@@ -46,7 +46,7 @@ namespace API
           policy.AllowCredentials()
             .AllowAnyHeader()
             .AllowAnyMethod()
-            .WithOrigins("http://localhost:3000");
+            .WithOrigins("http://localhost:8080");
         });
       });
       services.AddIdentityServices(_config);
