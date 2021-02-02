@@ -3,6 +3,7 @@ import { JWT_LOCALSTORAGE } from '../constants/common';
 import HomePage from '../pages/HomePage.vue';
 import LoginPage from '../pages/LoginPage.vue';
 import RegisterPage from '../pages/RegisterPage.vue';
+import NotFoundPage from '../pages/NotFoundPage.vue';
 import store from '../store';
 
 const routes = [
@@ -22,6 +23,11 @@ const routes = [
     name: 'RegisterPage',
     component: RegisterPage,
     meta: { onlyNonAuthUser: true },
+  },
+  {
+    path: '/:pathMatch(.*)*',
+    name: 'NotFoundPage',
+    component: NotFoundPage,
   },
 ];
 

@@ -27,7 +27,7 @@ axios.interceptors.request.use(
 
 axios.interceptors.response.use(undefined, (error) => {
   if (error.message === 'Network Error' && !error.message) {
-    console.log('Network error');
+    this.$toast.error("Network error");
   } else {
     const { status, data, config, headers } = error.response;
 
