@@ -58,7 +58,7 @@
       <g class="bars" fill="none">
         <rect
           v-for="(bar, index) in bars"
-          fill="#2196f3"
+          fill="#007bff"
           :key="index"
           :height="bar.height"
           :width="bar.width"
@@ -77,7 +77,7 @@ export default {
   name: 'BarChart',
   props: {
     height: { default: 200 },
-    width: { default: 500 },
+    width: { default: 400 },
     dataSet: { default: [] },
     marginLeft: { default: 40 },
     marginTop: { default: 40 },

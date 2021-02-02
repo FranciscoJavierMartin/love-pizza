@@ -1,17 +1,24 @@
 <template>
   <div>
     <h1>Home</h1>
-    <bar-chart
-      class="chart"
-      :data-set="users"
-      :margin-left="40"
-      :margin-top="40"
-      :tick-count="5"
-      :bar-padding="0.5"
-    />
-    <div v-if="currentUser">
-      <h2>Do you like pizza?</h2>
-      <button @click="likePizza">Click here</button>
+    <div class="row">
+      <div class="col-12 col-md-8">
+        <bar-chart
+          class="chart"
+          :data-set="users"
+          :margin-left="40"
+          :margin-top="40"
+          :tick-count="5"
+          :bar-padding="0.5"
+        />
+      </div>
+      <div v-if="currentUser" class="col-12 col-md-4 mt-4">
+        <h2>Do you like pizza?</h2>
+        <span class="text-secondary">Show us how much</span>
+        <button class="btn btn-primary btn-block mt-3" @click="likePizza">
+          Click here
+        </button>
+      </div>
     </div>
   </div>
 </template>
@@ -26,21 +33,8 @@ export default {
   },
   computed: {
     users() {
-      const users = this.$store.getters['users/top10Users'];
-      console.log(users);
+      const users = this.$store.getters["users/top10Users"];
       return users;
-      // return [
-      //   { name: "Alice", likes: 1 },
-      //   { name: "Bob", likes: 3 },
-      //   { name: "Carol", likes: 2 },
-      //   { name: "David", likes: 3 },
-      //   { name: "Eve", likes: 4 },
-      //   { name: "Frank", likes: 5 },
-      //   { name: "Geraldine", likes: 3 },
-      //   { name: "Hector", likes: 4 },
-      //   { name: "Irene", likes: 2 },
-      //   { name: "Jack", likes: 1 },
-      // ];
     },
     currentUser() {
       return this.$store.getters["auth/currentUser"];
@@ -51,7 +45,7 @@ export default {
       this.$store.dispatch("users/vote", this.currentUser.username);
     },
   },
-  mounted() {
+  created() {
     this.$store.dispatch("users/getUsers");
   },
 };

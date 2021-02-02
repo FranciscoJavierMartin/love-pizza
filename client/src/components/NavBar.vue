@@ -93,3 +93,10 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" scoped>
+.dropdown {
+  color: #fff;
+  background-color: #343a40;
+}
+</style>
