@@ -71,13 +71,13 @@
 </template>
 
 <script>
-import { scaleLinear, scaleBand } from 'd3-scale';
+import { scaleLinear, scaleBand } from "d3-scale";
 
 export default {
-  name: 'BarChart',
+  name: "BarChart",
   props: {
-    height: { default: 200 },
-    width: { default: 400 },
+    height: { default: 250 },
+    width: { default: 450 },
     dataSet: { default: [] },
     marginLeft: { default: 40 },
     marginTop: { default: 40 },
@@ -119,5 +119,3 @@ export default {
   },
 };
 </script>
-
-<style></style>

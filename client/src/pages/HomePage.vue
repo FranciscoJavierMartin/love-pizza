@@ -5,7 +5,7 @@
       <div class="col-12 col-md-8 d-flex flex-column">
         <h4 class="text-center mb-3">Top 10 pizza lovers</h4>
         <bar-chart
-          class="chart"
+          class="chart w-100"
           :data-set="users"
           :margin-left="40"
           :margin-top="40"
@@ -13,7 +13,9 @@
           :bar-padding="0.5"
         />
       </div>
-      <div class="col-12 col-md-4 mt-4 align-self-center">
+      <div
+        class="col-12 col-md-4 mt-4 align-self-center text-center text-md-left"
+      >
         <h2>Do you love pizza?</h2>
         <span class="text-secondary">Show us how much</span>
         <button
@@ -23,13 +25,11 @@
         >
           I love pizza
         </button>
-        <router-link
-          v-else
-          class="btn btn-primary btn-block mt-3"
-          :to="LOGIN_PAGE_ROUTE"
-        >
-          Login to show your love to pizza
-        </router-link>
+        <div v-else>
+          <router-link class="mt-3" :to="LOGIN_PAGE_ROUTE">
+            Login to show your love to pizza
+          </router-link>
+        </div>
       </div>
     </div>
   </div>

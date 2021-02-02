@@ -3,7 +3,6 @@
     <router-link class="navbar-brand" :to="HOME_PAGE_ROUTE"
       >Love Pizza</router-link
     >
-
     <!-- Not auth user -->
     <button
       v-if="!authUser"
@@ -49,7 +48,10 @@
       >
         {{ authUser.username }}
       </div>
-      <div class="dropdown-menu dropdown-menu-right bg-dark" aria-labelledby="dropdownMenuLink">
+      <div
+        class="dropdown-menu dropdown-menu-right bg-dark"
+        aria-labelledby="dropdownMenuLink"
+      >
         <span class="dropdown-item text-light" @click="this.signout()"
           >Sign Out</span
         >
