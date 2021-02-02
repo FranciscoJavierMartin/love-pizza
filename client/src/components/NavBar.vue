@@ -47,7 +47,7 @@
     </div>
 
     <!-- Auth user -->
-    <div class="dropdown" v-if="authUser">
+    <div class="dropdown text-light" v-if="authUser">
       <div
         role="button"
         id="dropdownMenuLink"
@@ -57,8 +57,8 @@
       >
         {{ authUser.username }}
       </div>
-      <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-        <span class="dropdown-item" @click="this.signout()">Sign Out</span>
+      <div class="dropdown-menu bg-dark" aria-labelledby="dropdownMenuLink">
+        <span class="dropdown-item text-light" @click="this.signout()">Sign Out</span>
       </div>
     </div>
   </nav>
@@ -93,10 +93,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss" scoped>
-.dropdown {
-  color: #fff;
-  background-color: #343a40;
-}
-</style>
