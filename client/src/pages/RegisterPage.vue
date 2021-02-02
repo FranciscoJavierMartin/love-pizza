@@ -13,6 +13,9 @@
           type="text"
           v-model="username"
         />
+        <span v-if="usernameRequired" class="text-danger"
+          >User name is required.</span
+        >
       </div>
       <div
         class="form-group col-sm-10 col-md-8 col-lg-6 offset-sm-1 offset-md-2 offset-lg-3"
@@ -25,6 +28,9 @@
           type="password"
           v-model="password"
         />
+        <span v-if="passwordRequired" class="text-danger"
+          >Password is required.</span
+        >
       </div>
       <div
         class="form-group col-sm-10 col-md-8 col-lg-6 offset-sm-1 offset-md-2 offset-lg-3"
@@ -37,6 +43,9 @@
           type="password"
           v-model="confirmPassword"
         />
+        <span v-if="confirmPasswordRequired" class="text-danger"
+          >Confirm Password is required.</span
+        >
       </div>
       <div
         class="col-sm-10 col-md-8 col-lg-6 offset-sm-1 offset-md-2 offset-lg-3"
@@ -70,19 +79,44 @@ export default {
       username: "",
       password: "",
       confirmPassword: "",
+      usernameRequired: false,
+      passwordRequired: false,
+      confirmPasswordRequired: false,
     };
   },
   computed: {
     LOGIN_PAGE_ROUTE() {
       return LOGIN_PAGE_ROUTE;
     },
+    matchPasswords() {
+      return this.password === this.confirmPassword;
+    },
   },
   methods: {
     registerUser() {
-      this.$store.dispatch("auth/registerUser", {
-        username: this.username,
-        password: this.password,
-      });
+      this.usernameRequired = false;
+      this.passwordRequired = false;
+      this.confirmPasswordRequired = false;
+
+      if (!this.username) {
+        this.usernameRequired = true;
+      } else if (!this.password) {
+        this.passwordRequired = true;
+      } else if (!this.confirmPassword) {
+        this.confirmPasswordRequired = true;
+      } else {
+        this.$store
+          .dispatch("auth/registerUser", {
+            username: this.username,
+            password: this.password,
+          })
+          .then(() => {
+            this.$router.push("/");
+          })
+          .catch((error) => {
+            this.$toast.error("Error on register");
+          });
+      }
     },
   },
 };

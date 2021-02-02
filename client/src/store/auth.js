@@ -23,7 +23,7 @@ export const authModule = {
   },
   actions: {
     loginUser({ commit }, payload) {
-      agent.Auth.login(payload).then((user) => {
+      return agent.Auth.login(payload).then((user) => {
         commit('setCurrentUser', user);
       });
     },
@@ -31,7 +31,7 @@ export const authModule = {
       commit('setCurrentUser', null);
     },
     registerUser({ commit }, payload) {
-      agent.Auth.register(payload).then((user) => {
+      return agent.Auth.register(payload).then((user) => {
         commit('setCurrentUser', user);
       });
     },

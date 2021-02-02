@@ -72,10 +72,6 @@ export default {
       return REGISTER_PAGE_ROUTE;
     },
   },
-  mounted() {
-    this.usernameRequired = false;
-    this.passwordRequired = false;
-  },
   methods: {
     loginUser() {
       this.usernameRequired = false;
@@ -86,10 +82,17 @@ export default {
       } else if (!this.password) {
         this.passwordRequired = true;
       } else {
-        this.$store.dispatch("auth/loginUser", {
-          username: this.username,
-          password: this.password,
-        });
+        this.$store
+          .dispatch("auth/loginUser", {
+            username: this.username,
+            password: this.password,
+          })
+          .then(() => {
+            this.$router.push("/");
+          })
+          .catch((error) => {
+            this.$toast.error("Error on login");
+          });
       }
     },
   },
