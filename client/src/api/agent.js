@@ -4,8 +4,9 @@ import {
   LOGIN_SERVER_ROUTE,
   REGISTER_SERVER_ROUTE,
   VOTE_SERVER_ROUTE,
-  TOP10_SERVER_ROUTE
+  TOP10_SERVER_ROUTE,
 } from '../constants/serverRoutes';
+import router from '../router';
 
 axios.defaults.baseURL = `${process.env.VUE_APP_API_URL}`;
 
@@ -26,13 +27,11 @@ axios.interceptors.request.use(
 );
 
 axios.interceptors.response.use(undefined, (error) => {
-  if (error.message === 'Network Error' && !error.message) {
-    this.$toast.error("Network error");
-  } else {
+  if (!(error.message === 'Network Error' && !error.message)) {
     const { status, data, config, headers } = error.response;
 
     if (status === 404) {
-      //TODO: Go to Not found page
+      router.push({ name: 'NotFoundPage' });
     } else if (
       status === 401 &&
       headers['www-authenticate'].includes(
@@ -40,10 +39,7 @@ axios.interceptors.response.use(undefined, (error) => {
       )
     ) {
       localStorage.removeItem(JWT_LOCALSTORAGE);
-
-      // TODO: Go to Home and show a toast
-    } else if (status === 500) {
-      // TODO: Show a toast
+      router.push({ name: 'HomePage' });
     }
   }
 
@@ -65,7 +61,7 @@ const Auth = {
 
 const Users = {
   vote: (username) => request.put(`${VOTE_SERVER_ROUTE}/${username}`, {}),
-  top10: () => request.get(`${TOP10_SERVER_ROUTE}`)
+  top10: () => request.get(`${TOP10_SERVER_ROUTE}`),
 };
 
 export default {
