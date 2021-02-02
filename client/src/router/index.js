@@ -31,7 +31,6 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  console.log(store);
   const isAuthenticated = !!localStorage.getItem(JWT_LOCALSTORAGE);
 
   if (to.meta.onlyNonAuthUser) {

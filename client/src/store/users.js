@@ -19,7 +19,6 @@ export const usersModule = {
     getUsers({ commit }) {
       agent.Users.top10()
         .then((users) => {
-          console.log(users);
           commit('setUsers', users);
         })
         .catch(console.log);
