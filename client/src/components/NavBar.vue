@@ -1,13 +1,65 @@
 <template>
-  <nav>
-    <router-link :to="HOME_PAGE_ROUTE">Love Pizza</router-link>
-    <div v-if="authUser">
-      <strong>{{ authUser.username }}</strong>
-      <button @click="signout">Sign Out</button>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <router-link class="navbar-brand" :to="HOME_PAGE_ROUTE"
+      >Love Pizza</router-link
+    >
+
+    <!-- Not auth user -->
+    <button
+      v-if="!authUser"
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#navbarNav"
+      aria-controls="navbarNav"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div v-if="!authUser" class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <router-link
+            class="nav-link"
+            active-class="active"
+            :to="HOME_PAGE_ROUTE"
+            >Home</router-link
+          >
+        </li>
+        <li class="nav-item">
+          <router-link
+            class="nav-link"
+            active-class="active"
+            :to="LOGIN_PAGE_ROUTE"
+            >Login</router-link
+          >
+        </li>
+        <li class="nav-item">
+          <router-link
+            class="nav-link"
+            active-class="active"
+            :to="REGISTER_PAGE_ROUTE"
+            >Register</router-link
+          >
+        </li>
+      </ul>
     </div>
-    <div v-else>
-      <router-link :to="LOGIN_PAGE_ROUTE">Login</router-link>
-      <router-link :to="REGISTER_PAGE_ROUTE">Register</router-link>
+
+    <!-- Auth user -->
+    <div class="dropdown" v-if="authUser">
+      <div
+        role="button"
+        id="dropdownMenuLink"
+        data-toggle="dropdown"
+        aria-haspopup="true"
+        aria-expanded="false"
+      >
+        {{ authUser.username }}
+      </div>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+        <span class="dropdown-item">Sign Out</span>
+      </div>
     </div>
   </nav>
 </template>
