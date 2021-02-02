@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-5">
     <router-link class="navbar-brand" :to="HOME_PAGE_ROUTE"
       >Love Pizza</router-link
     >
