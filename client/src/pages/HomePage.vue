@@ -13,12 +13,23 @@
           :bar-padding="0.5"
         />
       </div>
-      <div v-if="currentUser" class="col-12 col-md-4 mt-4 align-self-center">
-        <h2>Do you like pizza?</h2>
+      <div class="col-12 col-md-4 mt-4 align-self-center">
+        <h2>Do you love pizza?</h2>
         <span class="text-secondary">Show us how much</span>
-        <button class="btn btn-primary btn-block mt-3" @click="likePizza">
-          Click here
+        <button
+          v-if="currentUser"
+          class="btn btn-primary btn-block mt-3"
+          @click="lovePizza"
+        >
+          I love pizza
         </button>
+        <router-link
+          v-else
+          class="btn btn-primary btn-block mt-3"
+          :to="LOGIN_PAGE_ROUTE"
+        >
+          Login to show your love to pizza
+        </router-link>
       </div>
     </div>
   </div>
@@ -27,12 +38,16 @@
 <script>
 // @ is an alias to /src
 import BarChart from "../components/BarChart.vue";
+import { LOGIN_PAGE_ROUTE } from "../constants/routes";
 
 export default {
   components: {
     BarChart,
   },
   computed: {
+    LOGIN_PAGE_ROUTE() {
+      return LOGIN_PAGE_ROUTE;
+    },
     users() {
       const users = this.$store.getters["users/top10Users"];
       return users;
@@ -42,7 +57,7 @@ export default {
     },
   },
   methods: {
-    likePizza() {
+    lovePizza() {
       this.$store.dispatch("users/vote", this.currentUser.username);
     },
   },

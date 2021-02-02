@@ -23,14 +23,6 @@
           <router-link
             class="nav-link"
             active-class="active"
-            :to="HOME_PAGE_ROUTE"
-            >Home</router-link
-          >
-        </li>
-        <li class="nav-item">
-          <router-link
-            class="nav-link"
-            active-class="active"
             :to="LOGIN_PAGE_ROUTE"
             >Login</router-link
           >
@@ -58,7 +50,9 @@
         {{ authUser.username }}
       </div>
       <div class="dropdown-menu bg-dark" aria-labelledby="dropdownMenuLink">
-        <span class="dropdown-item text-light" @click="this.signout()">Sign Out</span>
+        <span class="dropdown-item text-light" @click="this.signout()"
+          >Sign Out</span
+        >
       </div>
     </div>
   </nav>
