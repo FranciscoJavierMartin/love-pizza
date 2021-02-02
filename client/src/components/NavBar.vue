@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <router-link class="navbar-brand" :to="HOME_PAGE_ROUTE"
       >Love Pizza</router-link
     >
@@ -58,7 +58,7 @@
         {{ authUser.username }}
       </div>
       <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-        <span class="dropdown-item">Sign Out</span>
+        <span class="dropdown-item" @click="this.signout()">Sign Out</span>
       </div>
     </div>
   </nav>
