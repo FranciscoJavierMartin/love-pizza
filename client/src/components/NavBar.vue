@@ -49,7 +49,7 @@
       >
         {{ authUser.username }}
       </div>
-      <div class="dropdown-menu bg-dark" aria-labelledby="dropdownMenuLink">
+      <div class="dropdown-menu dropdown-menu-right bg-dark" aria-labelledby="dropdownMenuLink">
         <span class="dropdown-item text-light" @click="this.signout()"
           >Sign Out</span
         >

@@ -49,8 +49,7 @@ export default {
       return LOGIN_PAGE_ROUTE;
     },
     users() {
-      const users = this.$store.getters["users/top10Users"];
-      return users;
+      return this.$store.getters["users/top10Users"];
     },
     currentUser() {
       return this.$store.getters["auth/currentUser"];
@@ -58,7 +57,14 @@ export default {
   },
   methods: {
     lovePizza() {
-      this.$store.dispatch("users/vote", this.currentUser.username);
+      this.$store
+        .dispatch("users/vote", this.currentUser.username)
+        .then(() => {
+          this.$toast.success("You love pizza");
+        })
+        .catch(() => {
+          this.$toast.error("Something goes wrong with your vote");
+        });
     },
   },
   created() {

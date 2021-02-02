@@ -17,16 +17,14 @@ export const usersModule = {
   },
   actions: {
     getUsers({ commit }) {
-      agent.Users.top10()
-        .then((users) => {
-          commit('setUsers', users);
-        })
-        .catch(console.log);
+      return agent.Users.top10().then((users) => {
+        commit('setUsers', users);
+      });
     },
-    vote({ commit }, payload) {
-      agent.Users.vote(payload)
-        .then(console.log)
-        .catch(console.log);
+    vote({ dispatch }, payload) {
+      return agent.Users.vote(payload).then(() => {
+        dispatch('getUsers');
+      });
     },
   },
 };
