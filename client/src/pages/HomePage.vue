@@ -13,16 +13,7 @@
           :bar-padding="0.5"
         />
       </div>
-      <div
-        v-else
-        class="col-12 col-md-8 d-flex flex-column text-center text-md-left"
-      >
-        <h2>No body has show their love for pizza yet</h2>
-        <span
-          >Be the first to show the whole world your love for this delicious
-          food.</span
-        >
-      </div>
+      <no-pizza-chart></no-pizza-chart>
       <div
         class="col-12 col-md-4 mt-4 align-self-center text-center text-md-left"
       >
@@ -48,11 +39,13 @@
 <script>
 // @ is an alias to /src
 import BarChart from "../components/BarChart.vue";
+import NoPizzaChart from '../components/NoPizzaChart.vue';
 import { LOGIN_PAGE_ROUTE } from "../constants/routes";
 
 export default {
   components: {
     BarChart,
+    NoPizzaChart,
   },
   computed: {
     LOGIN_PAGE_ROUTE() {
