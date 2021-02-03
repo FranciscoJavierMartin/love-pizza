@@ -2,7 +2,7 @@
   <div>
     <h1 class="text-center mb-5">Love Pizza</h1>
     <div class="row">
-      <div class="col-12 col-md-8 d-flex flex-column">
+      <div v-if="users.length > 0" class="col-12 col-md-8 d-flex flex-column">
         <h4 class="text-center mb-3">Top 10 pizza lovers</h4>
         <bar-chart
           class="chart w-100"
@@ -12,6 +12,16 @@
           :tick-count="5"
           :bar-padding="0.5"
         />
+      </div>
+      <div
+        v-else
+        class="col-12 col-md-8 d-flex flex-column text-center text-md-left"
+      >
+        <h2>No body has show their love for pizza yet</h2>
+        <span
+          >Be the first to show the whole world your love for this delicious
+          food.</span
+        >
       </div>
       <div
         class="col-12 col-md-4 mt-4 align-self-center text-center text-md-left"
