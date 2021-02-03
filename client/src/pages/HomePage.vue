@@ -13,7 +13,7 @@
           :bar-padding="0.5"
         />
       </div>
-      <no-pizza-chart></no-pizza-chart>
+      <no-pizza-chart v-else />
       <div
         class="col-12 col-md-4 mt-4 align-self-center text-center text-md-left"
       >
@@ -39,7 +39,7 @@
 <script>
 // @ is an alias to /src
 import BarChart from "../components/BarChart.vue";
-import NoPizzaChart from '../components/NoPizzaChart.vue';
+import NoPizzaChart from "../components/NoPizzaChart.vue";
 import { LOGIN_PAGE_ROUTE } from "../constants/routes";
 
 export default {
