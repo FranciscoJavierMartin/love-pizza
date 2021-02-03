@@ -26,3 +26,6 @@ If app uses many different types of charts, a package that contains many chart c
 
 ### SQLite
 A portable database, useful for development purposes that don't require any installation.
+
+### Swagger
+Use of Swagger for API documentation
