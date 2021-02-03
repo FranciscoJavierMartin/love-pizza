@@ -7,6 +7,9 @@ I choose Vue 3 over Vue 2 because is the future major version. The disadvantages
 
 The composition API looks promising, but most of the docs are still using the Options API.
 
+### Responsive design
+I made the client responsive because on the world of today most of the web traffic comes from mobile devices.
+
 ### Styles
 I choose Bootstrap like CSS framework because still is the most popular and most sites used it. Easy to use and find documentation. A great added will be purgeCSS to remove unused CSS, because you never use all styles provided by a CSS framework.
 
